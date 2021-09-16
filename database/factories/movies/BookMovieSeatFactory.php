@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Movies;
 
-use App\Models\BookMovieSeat;
+use App\Models\Movie\BookMovieSeat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BookMovieSeatFactory extends Factory

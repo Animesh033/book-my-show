@@ -1,19 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Movie;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class MovieCategory extends Model
+class BookMovieSeat extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name'];
-
-    public function movies()
-    {
-        return $this->hasMany(Movie::class);
-    }
+    protected $fillable = ['seats', 'show_at', 'movie_id', 'user_id', 'theater_id'];
 }

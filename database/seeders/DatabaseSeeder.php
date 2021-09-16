@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\Movies\TheaterSeeder;
+use Database\Seeders\Movies\BookMovieSeatSeeder;
+use Database\Seeders\Movies\MovieCategorySeeder;
 
 class DatabaseSeeder extends Seeder
 {

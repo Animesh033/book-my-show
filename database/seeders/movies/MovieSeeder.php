@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Movies;
 
-use App\Models\Movie;
+use App\Models\Movie\Movie;
 use Illuminate\Database\Seeder;
 
 class MovieSeeder extends Seeder

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Movie;
 
-use App\Models\MovieCategory;
+use App\Models\Movie\Movie;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class MovieCategoryController extends Controller
+class MovieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,9 @@ class MovieCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $movies = Movie::paginate(10);
+
+        return view('movies.index', compact('movies'));
     }
 
     /**
@@ -41,10 +44,10 @@ class MovieCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MovieCategory  $movieCategory
+     * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function show(MovieCategory $movieCategory)
+    public function show(Movie $movie)
     {
         //
     }
@@ -52,10 +55,10 @@ class MovieCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MovieCategory  $movieCategory
+     * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function edit(MovieCategory $movieCategory)
+    public function edit(Movie $movie)
     {
         //
     }
@@ -64,10 +67,10 @@ class MovieCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MovieCategory  $movieCategory
+     * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MovieCategory $movieCategory)
+    public function update(Request $request, Movie $movie)
     {
         //
     }
@@ -75,11 +78,17 @@ class MovieCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MovieCategory  $movieCategory
+     * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MovieCategory $movieCategory)
+    public function destroy(Movie $movie)
     {
         //
+    }
+
+    public function bookSeatNow($movieId)
+    {
+        $movie = Movie::findOrFail($movieId);
+        return view('movies.seat-book-now', compact('movie'));
     }
 }

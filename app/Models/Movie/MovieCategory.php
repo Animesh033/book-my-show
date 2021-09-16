@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Movie;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Theater extends Model
+class MovieCategory extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'address'];
+    protected $fillable = ['name'];
 
     public function movies()
     {
-        return $this->belongsToMany(Movie::class);
+        return $this->hasMany(Movie::class);
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Movies;
 
-use App\Models\Movie;
-use App\Models\Theater;
+use App\Models\Movie\Movie;
+use App\Models\Movie\Theater;
 use Illuminate\Database\Seeder;
 
 class TheaterSeeder extends Seeder

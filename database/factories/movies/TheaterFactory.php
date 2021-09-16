@@ -1,18 +1,18 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Movies;
 
-use App\Models\Movie;
+use App\Models\Movie\Theater;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MovieFactory extends Factory
+class TheaterFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Movie::class;
+    protected $model = Theater::class;
 
     /**
      * Define the model's default state.
@@ -23,9 +23,7 @@ class MovieFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'poster_url' => $this->faker->name(),
-            'seats' => $this->faker->numberBetween(1, 100),
-            'movie_category_id' => $this->faker->numberBetween(1, 10)
+            'address' => $this->faker->sentence(),
         ];
     }
 }

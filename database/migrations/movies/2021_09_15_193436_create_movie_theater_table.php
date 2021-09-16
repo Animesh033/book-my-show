@@ -14,15 +14,12 @@ class CreateMovieTheaterTable extends Migration
     public function up()
     {
         Schema::create('movie_theater', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('movie_id')->constrained()
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('theater_id')->constrained()
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->dateTime('starts_at', $precision = 0)->nullable();
             $table->dateTime('ends_at', $precision = 0)->nullable();
-            $table->softDeletes();
-            $table->timestamps();
         });
     }
 

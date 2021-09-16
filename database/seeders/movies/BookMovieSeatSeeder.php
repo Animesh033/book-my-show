@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Movies;
 
-use App\Models\BookMovieSeat;
 use Illuminate\Database\Seeder;
+use App\Models\Movie\BookMovieSeat;
 
 class BookMovieSeatSeeder extends Seeder
 {

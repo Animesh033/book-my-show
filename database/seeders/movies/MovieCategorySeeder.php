@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Movies;
 
-use App\Models\MovieCategory;
 use Illuminate\Database\Seeder;
+use App\Models\Movie\MovieCategory;
 
 class MovieCategorySeeder extends Seeder
 {

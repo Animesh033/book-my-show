@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Movie;
 
-use App\Models\Movie;
 use Illuminate\Http\Request;
+use App\Models\Movie\MovieCategory;
+use App\Http\Controllers\Controller;
 
-class MovieController extends Controller
+class MovieCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::paginate(10);
-
-        return view('movies.index', compact('movies'));
+        //
     }
 
     /**
@@ -43,10 +42,10 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Movie  $movie
+     * @param  \App\Models\MovieCategory  $movieCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $movie)
+    public function show(MovieCategory $movieCategory)
     {
         //
     }
@@ -54,10 +53,10 @@ class MovieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Movie  $movie
+     * @param  \App\Models\MovieCategory  $movieCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movie)
+    public function edit(MovieCategory $movieCategory)
     {
         //
     }
@@ -66,10 +65,10 @@ class MovieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Movie  $movie
+     * @param  \App\Models\MovieCategory  $movieCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, MovieCategory $movieCategory)
     {
         //
     }
@@ -77,17 +76,11 @@ class MovieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Movie  $movie
+     * @param  \App\Models\MovieCategory  $movieCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy(MovieCategory $movieCategory)
     {
         //
-    }
-
-    public function bookSeatNow($movieId)
-    {
-        $movie = Movie::findOrFail($movieId);
-        return view('movies.seat-book-now', compact('movie'));
     }
 }

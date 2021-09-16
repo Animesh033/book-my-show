@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Movie;
 
-use App\Models\BookMovieSeat;
 use Illuminate\Http\Request;
+use App\Models\Movie\Theater;
+use App\Http\Controllers\Controller;
 
-class BookMovieSeatController extends Controller
+class TheaterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class BookMovieSeatController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BookMovieSeat  $bookMovieSeat
+     * @param  \App\Models\Theater  $theater
      * @return \Illuminate\Http\Response
      */
-    public function show(BookMovieSeat $bookMovieSeat)
+    public function show(Theater $theater)
     {
         //
     }
@@ -52,10 +53,10 @@ class BookMovieSeatController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BookMovieSeat  $bookMovieSeat
+     * @param  \App\Models\Theater  $theater
      * @return \Illuminate\Http\Response
      */
-    public function edit(BookMovieSeat $bookMovieSeat)
+    public function edit(Theater $theater)
     {
         //
     }
@@ -64,10 +65,10 @@ class BookMovieSeatController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BookMovieSeat  $bookMovieSeat
+     * @param  \App\Models\Theater  $theater
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BookMovieSeat $bookMovieSeat)
+    public function update(Request $request, Theater $theater)
     {
         //
     }
@@ -75,10 +76,10 @@ class BookMovieSeatController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BookMovieSeat  $bookMovieSeat
+     * @param  \App\Models\Theater  $theater
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BookMovieSeat $bookMovieSeat)
+    public function destroy(Theater $theater)
     {
         //
     }
