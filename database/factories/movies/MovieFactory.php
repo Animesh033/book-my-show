@@ -23,7 +23,7 @@ class MovieFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'poster_url' => $this->faker->name(),
+            'poster_url' => 'https://source.unsplash.com/random',
             'seats' => $this->faker->numberBetween(1, 100),
             'movie_category_id' => $this->faker->numberBetween(1, 10)
         ];
