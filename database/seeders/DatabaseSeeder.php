@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Database\Seeders\Movies\TheaterSeeder;
 use Database\Seeders\Movies\BookMovieSeatSeeder;
@@ -16,7 +18,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(2)->create();
+        User::factory(2)->create();
+        $adminUser = [
+            'name' => 'Animesh',
+            'email' => 'bookmyshow@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$h3EXWuOGeKafu7C0QraDzeu7ELk0Oi.kIrfxLriGgVd7wI5/zoLW2', // 12345678
+            'remember_token' => Str::random(10),
+        ];
+        User::create($adminUser);
+
         $this->call([
             MovieCategorySeeder::class,
             TheaterSeeder::class,
