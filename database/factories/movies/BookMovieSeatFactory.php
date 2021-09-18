@@ -23,7 +23,8 @@ class BookMovieSeatFactory extends Factory
     {
         return [
             'seats' => $this->faker->numberBetween(1, 4),
-            'show_at' => date('Y-m-d H:i:s'),
+            'show_at' => date('Y-m-d'),
+            'show_time' => time(),
             'movie_id' => $this->faker->numberBetween(1, 10),
             'user_id' => $this->faker->numberBetween(1, 2),
             'theater_id' => $this->faker->numberBetween(1, 5)

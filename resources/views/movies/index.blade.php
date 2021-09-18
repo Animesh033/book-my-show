@@ -1,32 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+@if(count($movies))
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Movies') }}</div>
-
+    <div class="shadow-lg p-3 bg-body rounded text-center sticky-top">{{__('Movies')}}</div>
+    @foreach($movies->chunk(3) as $key => $items)
+    <div class="row">
+        @foreach($items as $key => $movie)
+        <div class="col-6 col-md-4">
+            <div class="mt-4 shadow-lg bg-body rounded">
+                <img src="{{$movie->poster_url}}" class="card-img-top" alt="{{$movie->poster_url}}">
                 <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-                    @if(count($movies))
-                    <div>
-                        @foreach($movies as $key => $movie)
-                        <p>{{$movie->name}} => {{$movie->movieCategory->name}} => {{$movie->seats}} <a href="{{route('seat-book.now', $movie->id)}}">{{__('Book Now')}}</a></p>
-                        @endforeach
-                    </div>
-                    {{ $movies->links() }}
-                    @else
-
-                    @endif
-
+                    <p class="card-text">{{$movie->name}} </p>
+                    <a class="btn btn-outline-primary btn-sm" href="{{route('movies.show', $movie->id)}}">{{__('Book Tickets')}}</a>
                 </div>
             </div>
         </div>
+        @endforeach
+    </div>
+    @endforeach
+    <div class="mt-4">
+        {{ $movies->links() }}
     </div>
 </div>
+@else
+
+@endif
 @endsection

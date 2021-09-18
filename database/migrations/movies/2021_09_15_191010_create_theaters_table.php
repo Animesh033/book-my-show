@@ -17,6 +17,7 @@ class CreateTheatersTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('address')->nullable();
+            $table->unsignedBigInteger('total_seats')->default(10);
             $table->softDeletes();
             $table->timestamps();
         });

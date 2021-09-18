@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Movie\MovieController;
 
 /*
@@ -20,6 +21,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('movies/book-seat/{movie}', [MovieController::class, 'bookSeatNow'])->name('seat-book.now');
-Route::resource('movies', MovieController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::post('movies/book-now', [MovieController::class, 'bookMovieNow'])->name('book.now');
+    Route::resource('movies', MovieController::class);
+});

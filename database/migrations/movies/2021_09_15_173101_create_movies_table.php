@@ -17,7 +17,6 @@ class CreateMoviesTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('poster_url')->nullable();
-            $table->unsignedBigInteger('seats')->default(0);
             $table->foreignId('movie_category_id')->constrained()
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->softDeletes();

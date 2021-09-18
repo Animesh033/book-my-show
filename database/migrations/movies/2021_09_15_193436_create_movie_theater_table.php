@@ -18,8 +18,8 @@ class CreateMovieTheaterTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('theater_id')->constrained()
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->dateTime('starts_at', $precision = 0)->nullable();
-            $table->dateTime('ends_at', $precision = 0)->nullable();
+            $table->time('starts_at', $precision = 0)->nullable();
+            $table->time('ends_at', $precision = 0)->nullable();
         });
     }
 

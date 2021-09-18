@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Movie;
 
+use Exception;
 use App\Models\Movie\Movie;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Movie\Theater;
+use Illuminate\Support\Facades\DB;
+use App\Models\Movie\BookMovieSeat;
 use App\Http\Controllers\Controller;
 
 class MovieController extends Controller
@@ -15,7 +20,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::paginate(10);
+        $movies = Movie::paginate(9);
 
         return view('movies.index', compact('movies'));
     }
@@ -49,7 +54,8 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
+        $movieTheaters = $movie->theaters()->whereNotNull('starts_at')->paginate(3);
+        return view('movies.show', compact('movie', 'movieTheaters'));
     }
 
     /**
@@ -86,9 +92,54 @@ class MovieController extends Controller
         //
     }
 
-    public function bookSeatNow($movieId)
+    public function bookMovieNow(Request $request)
     {
-        $movie = Movie::findOrFail($movieId);
-        return view('movies.seat-book-now', compact('movie'));
+        DB::beginTransaction();
+        try {
+            $input = $request->all();
+            $input['user_id'] = auth()->user()->id;
+
+            $data = $this->prepareRequestInput($input);
+
+            $isSeatAvailable = $this->isSeatAvailable($data);
+            if ($isSeatAvailable) {
+                $movieBooked = BookMovieSeat::create($data);
+                DB::commit();
+
+                $response = $movieBooked ? 'Movie ticket is booked successfully!' : 'Something went wrong!';
+                $status = $movieBooked ? 'success' : 'error';
+            } else {
+                $response = 'No booking allowed! Seat isn\'t available for ' . date('h:i A', strtotime($data['show_time']));
+                $status = 'error';
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            $response = $e->getMessage();
+            $status = 'error';
+        }
+
+        return redirect()->back()->with($status, $response);
+    }
+
+    public function prepareRequestInput($input)
+    {
+        $inputKey = $input['key'];
+        $newInput = [];
+        foreach ($input as $key => $in) {
+            $contains = Str::contains($key, $inputKey);
+            if ($contains)
+                $key = str_replace($inputKey, "", $key);
+
+            $keyValue = [$key => $in];
+
+            $newInput = array_merge($newInput, $keyValue);
+        }
+        return $newInput;
+    }
+
+    public function isSeatAvailable($input)
+    {
+        $noOfSeatAvailable = Theater::getAvailableSeats($input);
+        return $noOfSeatAvailable > 0 ? true : false;
     }
 }

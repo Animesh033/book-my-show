@@ -11,7 +11,7 @@ class Movie extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'movie_category_id', 'poster_url', 'seats'];
+    protected $fillable = ['name', 'movie_category_id', 'poster_url'];
 
     public function movieCategory()
     {
@@ -20,6 +20,6 @@ class Movie extends Model
 
     public function theaters()
     {
-        return $this->belongsToMany(Theater::class);
+        return $this->belongsToMany(Theater::class)->withPivot('starts_at', 'ends_at');
     }
 }

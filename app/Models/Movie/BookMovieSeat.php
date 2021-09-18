@@ -10,5 +10,5 @@ class BookMovieSeat extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['seats', 'show_at', 'movie_id', 'user_id', 'theater_id'];
+    protected $fillable = ['seats', 'show_at', 'show_time', 'movie_id', 'user_id', 'theater_id'];
 }

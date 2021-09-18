@@ -16,7 +16,8 @@ class CreateBookMovieSeatsTable extends Migration
         Schema::create('book_movie_seats', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('seats')->default(1);
-            $table->dateTime('show_at', $precision = 0);
+            $table->date('show_at', $precision = 0);
+            $table->string('show_time')->nullable();
             $table->foreignId('movie_id')->constrained()
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained()

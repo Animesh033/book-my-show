@@ -16,7 +16,7 @@ class MovieCategorySeeder extends Seeder
     {
         MovieCategory::factory()
             ->count(10)
-            ->hasMovies(2)
+            // ->hasMovies(2)
             ->create();
     }
 }
